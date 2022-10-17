@@ -1,9 +1,9 @@
-type FilmCardProps = {
+type Props = {
   name: string,
   img: string
 }
 
-function FilmCard(props: FilmCardProps) {
+function FilmCard(props: Props) {
   const {name, img} = props;
   return (
     <article className="small-film-card catalog__films-card">

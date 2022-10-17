@@ -1,12 +1,12 @@
 import FilmCard from "../../components/film-card/film-card";
 
-export type MainPageProps = {
+export type Props = {
   name: string,
   genre: string,
   year: number
 }
 
-function MainPage(props: MainPageProps) {
+function MainPage(props: Props) {
   const {name, genre, year} = props;
   return (
     <>
