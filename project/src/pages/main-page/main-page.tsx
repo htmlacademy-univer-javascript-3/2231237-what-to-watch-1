@@ -1,18 +1,20 @@
-import FilmCard from "../../components/film-card/film-card";
+import {Film} from '../../types/film';
+import FilmsList from '../../components/films-list/films-list';
+import {Link} from 'react-router-dom';
+import {AppRoutes} from '../../const';
 
 export type Props = {
-  name: string,
-  genre: string,
-  year: number
+  headerFilm: Film,
+  films: Film[]
 }
 
 function MainPage(props: Props) {
-  const {name, genre, year} = props;
+  const {headerFilm, films} = props;
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={headerFilm.poster} alt={headerFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -33,7 +35,7 @@ function MainPage(props: Props) {
               </div>
             </li>
             <li className="user-block__item">
-              <a href={'/'} className="user-block__link">Sign out</a>
+              <Link to={AppRoutes.SignIn} className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -41,24 +43,28 @@ function MainPage(props: Props) {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+              <img src={headerFilm.poster} alt={`${headerFilm.poster} poster`} width="218"
                    height="327"/>
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{name}</h2>
+              <h2 className="film-card__title">{headerFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__genre">{headerFilm.genres.join(' ')}</span>
+                <span className="film-card__year">{headerFilm.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+
+                <Link to={`/player/${headerFilm.id}`}>
+                  <button className="btn btn--play film-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
+
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -109,29 +115,7 @@ function MainPage(props: Props) {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            <FilmCard name={"Fantastic Beasts: The Crimes of Grindelwald"}
-                      img={"img/fantastic-beasts-the-crimes-of-grindelwald.jpg"}/>
-            <FilmCard name={"Bohemian Rhapsody"} img={"img/bohemian-rhapsody.jpg"}/>
-            <FilmCard name={"Macbeth"} img={"img/macbeth.jpg"}/>
-            <FilmCard name={"Aviator"} img={"img/aviator.jpg"}/>
-            <FilmCard name={"We need to talk about Kevin"} img={"img/we-need-to-talk-about-kevin.jpg"}/>
-            <FilmCard name={"What We Do in the Shadows"} img={"img/what-we-do-in-the-shadows.jpg"}/>
-            <FilmCard name={"Revenant"} img={"img/revenant.jpg"}/>
-            <FilmCard name={"Johnny English"} img={"img/johnny-english.jpg"}/>
-            <FilmCard name={"Shutter Island"} img={"img/shutter-island.jpg"}/>
-            <FilmCard name={"Pulp Fiction"} img={"img/pulp-fiction.jpg"}/>
-            <FilmCard name={"No Country for Old Men"} img={"img/no-country-for-old-men.jpg"}/>
-            <FilmCard name={"Snatch"} img={"img/snatch.jpg"}/>
-            <FilmCard name={"Moonrise Kingdom"} img={"img/moonrise-kingdom.jpg"}/>
-            <FilmCard name={"Seven Years in Tibet"} img={"img/seven-years-in-tibet.jpg"}/>
-            <FilmCard name={"Midnight Special"} img={"img/midnight-special.jpg"}/>
-            <FilmCard name={"War of the Worlds"} img={"img/war-of-the-worlds.jpg"}/>
-            <FilmCard name={"Dardjeeling Limited"} img={"img/dardjeeling-limited.jpg"}/>
-            <FilmCard name={"Orlando"} img={"img/orlando.jpg"}/>
-            <FilmCard name={"Mindhunter"} img={"img/mindhunter.jpg"}/>
-            <FilmCard name={"Midnight Special"} img={"img/midnight-special.jpg"}/>
-          </div>
+          <FilmsList films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -153,7 +137,7 @@ function MainPage(props: Props) {
         </footer>
       </div>
     </>
-  )
+  );
 }
 
 export default MainPage;
