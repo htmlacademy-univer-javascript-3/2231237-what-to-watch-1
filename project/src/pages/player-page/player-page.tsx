@@ -32,7 +32,7 @@ function PlayerPausePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default PlayerPausePage;

@@ -95,12 +95,15 @@ function MoviePage() {
                 <p>Gustave prides himself on providing first-class service to the hotel's guests, including satisfying
                   the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies
                   mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her
-                  murder.</p>
+                  murder.
+                </p>
 
-                <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
+                <p className="film-card__director"><strong>Director: Wes Anderson</strong>
+                </p>
 
                 <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                  and other</strong></p>
+                  and other</strong>
+                </p>
               </div>
             </div>
           </div>
@@ -119,7 +122,8 @@ function MoviePage() {
               </div>
               <h3 className="small-film-card__title">
                 <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of
-                  Grindelwald</a>
+                  Grindelwald
+                </a>
               </h3>
             </article>
 
@@ -167,7 +171,7 @@ function MoviePage() {
         </footer>
       </div>
     </>
-  )
+  );
 }
 
 export default MoviePage;
