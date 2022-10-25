@@ -1,17 +1,17 @@
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../const';
+import {Film} from "../../types/film";
 
 type Props = {
-  source: string,
-  poster: string
+  film: Film
 }
 
-
 function PlayerPage(props: Props) {
-  const {source, poster} = props;
+  const {videoLink, posterImage} = props.film;
+
   return (
     <div className="player">
-      <video src={source} className="player__video" poster={poster}></video>
+      <video src={videoLink} className="player__video" poster={posterImage}></video>
 
       <Link to={AppRoutes.Main}>
         <button type="button" className="player__exit">Exit</button>

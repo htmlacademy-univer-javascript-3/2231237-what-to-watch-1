@@ -10,12 +10,19 @@ const films: Film[] = [
       'and loyalty are tested, even among the truest friends and family, in an increasingly divided ' +
       'wizarding world',
     releaseYear: 2018,
-    genres: ['Adventure', 'Family', 'Fantasy'],
+    genre: 'Fantasy',
     rating: 6.5,
+    scoreCount: 300,
     starring: ['Eddie Redmayne', 'Katherine Waterson', 'Dan Fogler'],
-    poster: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
-    directors: ['David Yates'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
+    previewImage: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
+    director: 'David Yates',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    isFavourite: false
   },
   {
     id: '00000002',
@@ -23,12 +30,19 @@ const films: Film[] = [
     description: 'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to ' +
       'their famous performance at Live Aid (1985).',
     releaseYear: 2018,
-    genres: ['Biography', 'Drama', 'Music'],
+    genre: 'Biography',
     rating: 7.9,
     starring: ['Rami Malek', 'Lucy Boyton', 'Peter Morgan'],
-    poster: 'img/bohemian-rhapsody.jpg',
-    directors: ['Bryan Singler'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/bohemian-rhapsody.jpg',
+    previewImage: 'img/bohemian-rhapsody.jpg',
+    director: 'Bryan Singler',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 300,
+    isFavourite: false
   },
   {
     id: '00000003',
@@ -37,12 +51,19 @@ const films: Film[] = [
       'King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes ' +
       'the throne for himself.',
     releaseYear: 2015,
-    genres: ['History', 'Drama', 'War'],
+    genre: 'History',
     rating: 6.6,
     starring: ['Michael Fassbender', 'Marion Cotillard', 'Jack Madigan'],
-    poster: 'img/macbeth.jpg',
-    directors: ['Justin Kurzel'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/macbeth.jpg',
+    previewImage: 'img/macbeth.jpg',
+    director: 'Justin Kurzel',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 300,
+    isFavourite: false
   },
   {
     id: '00000004',
@@ -50,12 +71,19 @@ const films: Film[] = [
     description: 'A biopic depicting the early years of legendary director and aviator Howard Hughes\' ' +
       'career from the late 1920s to the mid 1940s.',
     releaseYear: 2004,
-    genres: ['Biography', 'Drama'],
+    genre: 'Biography',
     rating: 7.5,
     starring: ['Leonardo DiCaprio', 'Cate Blanchett', 'Kate Beckinsale'],
-    poster: 'img/aviator.jpg',
-    directors: ['Martin Scorsese'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/aviator.jpg',
+    previewImage: 'img/aviator.jpg',
+    director: 'Martin Scorsese',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 300,
+    isFavourite: false
   },
   {
     id: '00000005',
@@ -64,12 +92,19 @@ const films: Film[] = [
       'he says and does as he grows up. But Kevin is just getting started, and his final act will be beyond ' +
       'anything anyone imagined.',
     releaseYear: 2011,
-    genres: ['Drama', 'Mystery', 'Thriller'],
+    genre: 'Drama',
     rating: 7.5,
     starring: ['Tilda Swanton', 'John C. Reilly', 'Erza Miller'],
-    poster: 'img/we-need-to-talk-about-kevin.jpg',
-    directors: ['Lynne Ramsay'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/we-need-to-talk-about-kevin.jpg',
+    previewImage: 'img/we-need-to-talk-about-kevin.jpg',
+    director: 'Lynne Ramsay',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 300,
+    isFavourite: false
   },
   {
     id: '00000006',
@@ -78,12 +113,19 @@ const films: Film[] = [
       'modern life, like paying rent, keeping up with the chore wheel, trying to get into nightclubs, ' +
       'and overcoming flatmate conflicts.',
     releaseYear: 2014,
-    genres: ['Comedy', 'Horror'],
+    genre: 'Comedy',
     rating: 7.6,
     starring: ['Jemaine Clement', 'Taika Waititi', 'Cori Gonzalez-Macuer'],
-    poster: 'img/what-we-do-in-the-shadows.jpg',
-    directors: ['Jemaine Clement', 'Taika Waititi'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/what-we-do-in-the-shadows.jpg',
+    previewImage: 'img/what-we-do-in-the-shadows.jpg',
+    director: 'Jemaine Clement',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 300,
+    isFavourite: false
   },
   {
     id: '00000007',
@@ -91,12 +133,19 @@ const films: Film[] = [
     description: 'A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by ' +
       'a bear and left for dead by members of his own hunting team.',
     releaseYear: 2015,
-    genres: ['Action', 'Adventure', 'Drama'],
+    genre: 'Drama',
     rating: 8,
     starring: ['Leonardo DiCaprio', 'Tom Hardy', 'Will Poulter'],
-    poster: 'img/revenant.jpg',
-    directors: ['Alejandro G. Iñárritu'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/revenant.jpg',
+    previewImage: 'img/revenant.jpg',
+    director: 'Alejandro G. Iñárritu',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 300,
+    isFavourite: false
   },
   {
     id: '00000008',
@@ -104,12 +153,19 @@ const films: Film[] = [
     description: 'After a sudden attack on MI5, Johnny English, Britain\'s most confident, ' +
       'yet unintelligent spy, becomes Britain\'s only spy.',
     releaseYear: 2003,
-    genres: ['Action', 'Adventure', 'Comedy'],
+    genre: 'Comedy',
     rating: 6.2,
     starring: ['Rowan Atkinson', 'John Malkovich', 'Natalie Imbruglia'],
-    poster: 'img/johnny-english.jpg',
-    directors: ['Peter Howitt'],
-    source: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    posterImage: 'img/johnny-english.jpg',
+    previewImage: 'img/johnny-english.jpg',
+    director: 'Peter Howitt',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 300,
+    isFavourite: false
   }
 ];
 

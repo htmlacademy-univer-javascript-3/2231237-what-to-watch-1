@@ -12,16 +12,17 @@ import {Film} from '../../types/film';
 
 
 type Props = {
-  headerFilm: Film,
+  promoFilm: Film,
   films: Film[]
 }
 
 function App(props: Props): JSX.Element {
-  const {headerFilm, films} = props;
+  const {promoFilm, films} = props;
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoutes.Main} element={<MainPage films={films} headerFilm={headerFilm}/>}/>
+        <Route path={AppRoutes.Main} element={<MainPage films={films} promoFilm={promoFilm}/>}/>
         <Route path={AppRoutes.SignIn} element={<SignInPage/>}/>
         <Route path={AppRoutes.MyList}
                element={<PrivateRoute authorizationStatus={AuthorizationStatuses.NoAuth}
@@ -30,9 +31,9 @@ function App(props: Props): JSX.Element {
         <Route path={AppRoutes.Film}>
           <Route index element={<MoviePage film={films[0]}/>}/>
           <Route path={'review'}
-                 element={<AddReviewPage id={films[0].id} name={films[0].name} poster={films[0].poster}/>}/>
+                 element={<AddReviewPage film={films[0]}/>}/>
         </Route>
-        <Route path={AppRoutes.Player} element={<PlayerPage poster={films[0].poster} source={films[0].source}/>}/>
+        <Route path={AppRoutes.Player} element={<PlayerPage film={films[0]}/>}/>
         <Route path={AppRoutes.Unknown} element={<NotFoundErrorPage/>}/>
       </Routes>
     </BrowserRouter>

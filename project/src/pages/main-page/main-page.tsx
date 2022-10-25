@@ -1,20 +1,21 @@
+import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
-import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../const';
 
 export type Props = {
-  headerFilm: Film,
+  promoFilm: Film,
   films: Film[]
 }
 
 function MainPage(props: Props) {
-  const {headerFilm, films} = props;
+  const {promoFilm, films} = props;
+
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={headerFilm.poster} alt={headerFilm.name}/>
+          <img src={promoFilm.posterImage} alt={promoFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -43,20 +44,20 @@ function MainPage(props: Props) {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={headerFilm.poster} alt={`${headerFilm.poster} poster`} width="218"
+              <img src={promoFilm.posterImage} alt={`${promoFilm.posterImage} poster`} width="218"
                    height="327"/>
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{headerFilm.name}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{headerFilm.genres.join(' ')}</span>
-                <span className="film-card__year">{headerFilm.releaseYear}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
 
-                <Link to={`/player/${headerFilm.id}`}>
+                <Link to={`/player/${promoFilm.id}`}>
                   <button className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>

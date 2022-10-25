@@ -1,21 +1,21 @@
 import {Link} from "react-router-dom";
 import {AppRoutes} from '../../const';
 import CommentForm from '../../components/comment-form/comment-form';
+import {Film} from "../../types/film";
 
 type Props = {
-  id: string,
-  name: string,
-  poster: string
+  film: Film
 }
 
 
 function AddReviewPage(props: Props) {
-  const {id, name, poster} = props;
+  const {id, name, posterImage} = props.film;
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={poster} alt={`${name} poster`}/>
+          <img src={posterImage} alt={`${name} poster`}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -53,7 +53,7 @@ function AddReviewPage(props: Props) {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={poster} alt={`${name} poster`} width="218"
+          <img src={posterImage} alt={`${name} poster`} width="218"
                height="327"
           />
         </div>

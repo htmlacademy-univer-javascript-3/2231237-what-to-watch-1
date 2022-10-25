@@ -8,7 +8,6 @@ type Props = {
   films: Film[]
 }
 
-
 function MyListPage(props: Props) {
   return (
     <div className="user-page">

@@ -8,12 +8,13 @@ type Props = {
 
 function MoviePage(props: Props) {
   const {film} = props;
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.poster} alt={film.name}/>
+            <img src={film.posterImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -43,7 +44,7 @@ function MoviePage(props: Props) {
             <div className="film-card__desc">
               <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{film.genres.join(' ')}</span>
+                <span className="film-card__genre">{film.genre}</span>
                 <span className="film-card__year">{film.releaseYear}</span>
               </p>
 
@@ -70,7 +71,7 @@ function MoviePage(props: Props) {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.poster} alt={`${film.name} poster`} width="218"
+              <img src={film.posterImage} alt={`${film.name} poster`} width="218"
                    height="327"/>
             </div>
 
@@ -100,7 +101,7 @@ function MoviePage(props: Props) {
               <div className="film-card__text">
                 {film.description}
 
-                <p className="film-card__director"><strong>{film.directors.join(' ')}</strong>
+                <p className="film-card__director"><strong>{film.director}</strong>
                 </p>
 
                 <p className="film-card__starring"><strong>Starring: {film.starring.join(' ')}</strong>

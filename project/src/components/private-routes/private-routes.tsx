@@ -9,6 +9,7 @@ type Props = {
 
 function PrivateRoute(props: Props) {
   const {authorizationStatus, children} = props;
+
   return (
     authorizationStatus === AuthorizationStatuses.Auth
       ? children

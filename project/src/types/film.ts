@@ -3,10 +3,17 @@ export type Film = {
   name: string,
   description: string,
   releaseYear: number,
-  genres: string[],
+  genre: string,
   rating: number,
+  scoreCount: number,
   starring: string[],
-  poster: string,
-  directors: string[],
-  source: string
+  posterImage: string,
+  previewImage: string,
+  director: string,
+  backgroundImage: string,
+  backgroundColor: string,
+  videoLink: string,
+  previewVideoLink: string,
+  runTime: number,
+  isFavourite: boolean
 }
