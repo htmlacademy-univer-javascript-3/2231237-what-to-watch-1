@@ -4,6 +4,14 @@ function CommentForm() {
       <form action="#" className="add-review__form">
         <div className="rating">
           <div className="rating__stars">
+            {new Array(10).fill(' ').map((_, index) =>
+              (<>
+                  <input className="rating__input" id={`star-${index + 1}`} type="radio" name="rating"
+                         value={`${index + 1}`}/>
+                  <label className="rating__label" htmlFor={`star-${index + 1}`}>Rating {index + 1}</label>)
+                </>
+              ))
+            }
             <input className="rating__input" id="star-10" type="radio" name="rating" value="10"/>
             <label className="rating__label" htmlFor="star-10">Rating 10</label>
 

@@ -10,12 +10,12 @@ type Props = {
 function FilmsList(props: Props) {
   const {films} = props;
   const [, setActiveFilm] = useState('');
-  const activeFilmHandler = (id: string) => setActiveFilm(id);
+  const handleMouseEnter = (id: string) => setActiveFilm(id);
 
   return (
     <div className="catalog__films-list">
       {films.map((film) => <FilmCard film={film}
-                                     onMouseEnter={activeFilmHandler}/>)}
+                                     onMouseEnter={handleMouseEnter}/>)}
     </div>
   );
 }
