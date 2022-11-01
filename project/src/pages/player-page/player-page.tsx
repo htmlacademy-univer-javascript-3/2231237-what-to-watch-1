@@ -1,9 +1,22 @@
-function PlayerPausePage() {
+import {Link} from 'react-router-dom';
+import {AppRoutes} from '../../const';
+import {Film} from "../../types/film";
+
+type Props = {
+  film: Film
+}
+
+function PlayerPage(props: Props) {
+  const {videoLink, posterImage} = props.film;
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={videoLink} className="player__video" poster={posterImage}></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <Link to={AppRoutes.Main}>
+        <button type="button" className="player__exit">Exit</button>
+      </Link>
+
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -35,4 +48,4 @@ function PlayerPausePage() {
   );
 }
 
-export default PlayerPausePage;
+export default PlayerPage;
