@@ -1,5 +1,5 @@
-import {useEffect, useRef} from "react";
-import {Film} from "../../types/film";
+import {useEffect, useRef} from 'react';
+import {Film} from '../../types/film';
 
 type Props = {
   film: Film,

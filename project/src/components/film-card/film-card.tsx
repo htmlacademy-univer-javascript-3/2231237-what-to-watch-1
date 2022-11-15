@@ -16,28 +16,28 @@ function FilmCard(props: Props) {
   } = props;
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isNeedToPlay, setIsNeedToPlay] = useState(false);
+  const [isNeededToPlay, setIsNeededToPlay] = useState(false);
 
   useEffect(() => {
     let needUpdate = true;
 
-    if (isNeedToPlay) {
+    if (isNeededToPlay) {
       setTimeout(() => needUpdate && setIsPlaying(true), 1000);
     }
     return () => {
       needUpdate = false;
     };
-  }, [isNeedToPlay]);
+  }, [isNeededToPlay]);
 
   return (
     <article className="small-film-card catalog__films-card"
              onMouseEnter={() => {
                onMouseEnter(film.id);
-               setIsNeedToPlay(true);
+               setIsNeededToPlay(true);
              }}
              onMouseLeave={() => {
                onMouseEnter('');
-               setIsNeedToPlay(false);
+               setIsNeededToPlay(false);
                setIsPlaying(false);
              }}
     >
