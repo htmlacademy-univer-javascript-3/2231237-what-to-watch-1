@@ -30,7 +30,7 @@ const films: Film[] = [
     description: 'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to ' +
       'their famous performance at Live Aid (1985).',
     releaseYear: 2018,
-    genre: 'Biography',
+    genre: 'Fantasy',
     rating: 7.9,
     starring: ['Rami Malek', 'Lucy Boyton', 'Peter Morgan'],
     posterImage: 'img/bohemian-rhapsody.jpg',

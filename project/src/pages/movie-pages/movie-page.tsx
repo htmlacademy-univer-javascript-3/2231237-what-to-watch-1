@@ -1,13 +1,24 @@
+import {Link, useParams} from 'react-router-dom';
+import {useEffect} from 'react';
 import {Film} from '../../types/film';
-import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../const';
+import Tabs from '../../components/tabs/tabs';
+import {Review} from '../../types/review';
+import FilmsList from '../../components/films-list/films-list';
+
 
 type Props = {
-  film: Film
+  films: Film[],
+  reviews: Review[]
 }
 
 function MoviePage(props: Props) {
-  const {film} = props;
+  const {films, reviews} = props;
+  const {id} = useParams();
+  const film = films.filter(film => film.id === id)[0];
+
+  useEffect(() => {
+  }, [id]);
 
   return (
     <>
@@ -75,39 +86,7 @@ function MoviePage(props: Props) {
                    height="327"/>
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                {film.description}
-
-                <p className="film-card__director"><strong>{film.director}</strong>
-                </p>
-
-                <p className="film-card__starring"><strong>Starring: {film.starring.join(' ')}</strong>
-                </p>
-              </div>
-            </div>
+            <Tabs film={film} reviews={reviews}/>
           </div>
         </div>
       </section>
@@ -115,47 +94,7 @@ function MoviePage(props: Props) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                     alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of
-                  Grindelwald
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <FilmsList films={films.filter((f) => f.genre === film.genre && f !== film).slice(0, 4)}/>
         </section>
 
         <footer className="page-footer">

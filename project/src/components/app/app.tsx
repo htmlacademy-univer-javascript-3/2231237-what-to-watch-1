@@ -9,15 +9,17 @@ import PlayerPage from '../../pages/player-page/player-page';
 import NotFoundErrorPage from '../../pages/not-found-error-page/not-found-error-page';
 import MyListPage from '../../pages/my-list-page/my-list-page';
 import {Film} from '../../types/film';
+import {Review} from '../../types/review';
 
 
 type Props = {
   promoFilm: Film,
-  films: Film[]
+  films: Film[],
+  reviews: Review[]
 }
 
 function App(props: Props): JSX.Element {
-  const {promoFilm, films} = props;
+  const {promoFilm, films, reviews} = props;
 
   return (
     <BrowserRouter>
@@ -29,7 +31,7 @@ function App(props: Props): JSX.Element {
                                       children={<MyListPage films={films}/>}/>}
         />
         <Route path={AppRoutes.Film}>
-          <Route index element={<MoviePage film={films[0]}/>}/>
+          <Route index element={<MoviePage films={films} reviews={reviews}/>}/>
           <Route path={'review'}
                  element={<AddReviewPage film={films[0]}/>}/>
         </Route>
