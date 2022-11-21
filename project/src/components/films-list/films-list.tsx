@@ -4,7 +4,7 @@ import FilmCard from '../film-card/film-card';
 
 
 type Props = {
-  films: Film[]
+  films: Film[];
 }
 
 function FilmsList(props: Props) {
@@ -14,7 +14,7 @@ function FilmsList(props: Props) {
 
   return (
     <div className="catalog__films-list">
-      {films.map((film) => <FilmCard film={film}
+      {films.map((film) => <FilmCard film={film} key={film.id}
                                      onMouseEnter={handleMouseEnter}/>)}
     </div>
   );
