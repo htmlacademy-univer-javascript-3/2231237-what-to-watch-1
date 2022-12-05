@@ -1,22 +1,3 @@
-// import Genre from './genre';
-//
-// type Props = {
-//   genres: string[],
-//   activeGenre: string
-// }
-//
-// function GenreList(props: Props) {
-//   const {genres, activeGenre} = props;
-//   return (
-//     <ul className="catalog__genres-list">
-//       {genres.map((genre) => <Genre genre={genre} isCurrentGenre={activeGenre === genre}/>)}
-//     </ul>
-//   );
-// };
-//
-// export default GenreList;
-
-
 import React, {FC} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {changeGenre} from '../../store/action';
