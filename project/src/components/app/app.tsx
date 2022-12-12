@@ -24,7 +24,7 @@ function App(props: Props): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoutes.Main} element={<MainPage films={films} promoFilm={promoFilm}/>}/>
+        <Route path={AppRoutes.Main} element={<MainPage promoFilm={promoFilm}/>}/>
         <Route path={AppRoutes.SignIn} element={<SignInPage/>}/>
         <Route path={AppRoutes.MyList}
                element={<PrivateRoute authorizationStatus={AuthorizationStatuses.NoAuth}

@@ -1,6 +1,6 @@
 import {Film} from '../types/film';
 
-const films: Film[] = [
+export const films: Film[] = [
   {
     id: '00000001',
     name: 'Fantastic Beasts: The Crimes of Grindelwald',
