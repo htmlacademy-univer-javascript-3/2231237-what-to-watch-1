@@ -1,35 +1,13 @@
-import React, {FC} from 'react';
-import {useAppDispatch} from '../../hooks';
-import {changeGenre} from '../../store/action';
-
+import React from 'react';
+import GenreItem from './genre';
 
 type Props = {
   genres: string[];
   activeGenre: string;
 };
 
-type GenreItemProps = {
-  genre: string;
-  isActive: boolean;
-};
 
-const GenreItem: FC<GenreItemProps> = (props) => {
-  const {genre, isActive} = props;
-  const dispatch = useAppDispatch();
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    dispatch(changeGenre({genre: genre}));
-  };
-
-  return (
-    <li className={`catalog__genres-item ${isActive ? ' catalog__genres-item--active' : ''}`}>
-      <a href='#' className='catalog__genres-link' onClick={handleLinkClick}>{genre}</a>
-    </li>
-  );
-};
-
-const GenresList: FC<Props> = (props) => {
+function GenresList(props: Props) {
   const {genres, activeGenre} = props;
 
   return (
@@ -37,6 +15,6 @@ const GenresList: FC<Props> = (props) => {
       {genres.map((genre) => <GenreItem key={genre} genre={genre} isActive={genre === activeGenre}/>)}
     </ul>
   );
-};
+}
 
 export default GenresList;

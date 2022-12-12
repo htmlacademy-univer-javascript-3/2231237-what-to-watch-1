@@ -1,16 +1,26 @@
-import {store} from '../../store';
+import {useAppDispatch} from "../../hooks";
+import React from "react";
 import {changeGenre} from "../../store/action";
 
 type Props = {
-  genre: string,
-  isCurrentGenre: boolean
+  genre: string;
+  isActive: boolean;
+};
+
+function GenreItem(props: Props) {
+  const {genre, isActive} = props;
+  const dispatch = useAppDispatch();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    dispatch(changeGenre({genre: genre}));
+  };
+
+  return (
+    <li className={`catalog__genres-item ${isActive ? ' catalog__genres-item--active' : ''}`}>
+      <a href='#' className='catalog__genres-link' onClick={handleLinkClick}>{genre}</a>
+    </li>
+  );
 }
 
-function Genre(props: Props) {
-  const {genre, isCurrentGenre} = props;
-  const onClickHandler = () => {
-    store.dispatch(changeGenre({genre: genre}))
-  }
-}
-
-export default Genre;
+export default GenreItem;
