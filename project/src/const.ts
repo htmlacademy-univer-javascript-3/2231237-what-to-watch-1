@@ -31,3 +31,5 @@ export enum Genres {
   THRILLER = 'Thriller',
   ALL_GENRES = 'All genres',
 }
+
+export const SHOWN_FILMS_STEP = 8;

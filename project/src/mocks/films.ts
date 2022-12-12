@@ -10,7 +10,7 @@ export const films: Film[] = [
       'and loyalty are tested, even among the truest friends and family, in an increasingly divided ' +
       'wizarding world',
     releaseYear: 2018,
-    genre: 'Fantasy',
+    genre: 'Comedy',
     rating: 6.5,
     scoreCount: 300,
     starring: ['Eddie Redmayne', 'Katherine Waterson', 'Dan Fogler'],
@@ -30,7 +30,7 @@ export const films: Film[] = [
     description: 'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to ' +
       'their famous performance at Live Aid (1985).',
     releaseYear: 2018,
-    genre: 'Fantasy',
+    genre: 'Comedy',
     rating: 7.9,
     starring: ['Rami Malek', 'Lucy Boyton', 'Peter Morgan'],
     posterImage: 'img/bohemian-rhapsody.jpg',
@@ -51,7 +51,7 @@ export const films: Film[] = [
       'King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes ' +
       'the throne for himself.',
     releaseYear: 2015,
-    genre: 'History',
+    genre: 'Comedy',
     rating: 6.6,
     starring: ['Michael Fassbender', 'Marion Cotillard', 'Jack Madigan'],
     posterImage: 'img/macbeth.jpg',
@@ -71,7 +71,7 @@ export const films: Film[] = [
     description: 'A biopic depicting the early years of legendary director and aviator Howard Hughes\' ' +
       'career from the late 1920s to the mid 1940s.',
     releaseYear: 2004,
-    genre: 'Biography',
+    genre: 'Comedy',
     rating: 7.5,
     starring: ['Leonardo DiCaprio', 'Cate Blanchett', 'Kate Beckinsale'],
     posterImage: 'img/aviator.jpg',
@@ -92,7 +92,7 @@ export const films: Film[] = [
       'he says and does as he grows up. But Kevin is just getting started, and his final act will be beyond ' +
       'anything anyone imagined.',
     releaseYear: 2011,
-    genre: 'Drama',
+    genre: 'Comedy',
     rating: 7.5,
     starring: ['Tilda Swanton', 'John C. Reilly', 'Erza Miller'],
     posterImage: 'img/we-need-to-talk-about-kevin.jpg',
@@ -133,7 +133,7 @@ export const films: Film[] = [
     description: 'A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by ' +
       'a bear and left for dead by members of his own hunting team.',
     releaseYear: 2015,
-    genre: 'Drama',
+    genre: 'Comedy',
     rating: 8,
     starring: ['Leonardo DiCaprio', 'Tom Hardy', 'Will Poulter'],
     posterImage: 'img/revenant.jpg',
@@ -165,6 +165,25 @@ export const films: Film[] = [
     backgroundColor: '',
     runTime: 0,
     scoreCount: 300,
+    isFavourite: false
+  },
+  {
+    id: '00000009',
+    name: 'Johnny',
+    description: 'kUKU',
+    releaseYear: 2005,
+    genre: 'Comedy',
+    rating: 6.7,
+    starring: ['Rowan Atkinson', 'John Malkovich', 'Natalie Imbruglia'],
+    posterImage: 'img/johnny-english.jpg',
+    previewImage: 'img/johnny-english.jpg',
+    director: 'Peter Howitt',
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    previewVideoLink: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    runTime: 0,
+    scoreCount: 350,
     isFavourite: false
   }
 ];

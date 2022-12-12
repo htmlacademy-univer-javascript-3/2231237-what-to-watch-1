@@ -1,9 +1,11 @@
 import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
-import {AppRoutes, Genres} from '../../const';
-import GenreList from '../../components/genre-list/genre-list';
+import {AppRoutes, Genres, SHOWN_FILMS_STEP} from '../../const';
+import GenresList from "../../components/genre-list/genre-list";
 import {useAppSelector} from '../../hooks';
+import ShowMore from "../../components/show-more/show-more";
+import {useState} from "react";
 
 export type Props = {
   promoFilm: Film
@@ -12,9 +14,16 @@ export type Props = {
 function MainPage(props: Props) {
   const {promoFilm} = props;
   const {films, activeGenre} = useAppSelector((state) => state);
+  const [shownFilmsCount, setShownFilmsCount] = useState(SHOWN_FILMS_STEP);
   const filteredFilms = films
-    .filter((film) => film.genre === activeGenre || activeGenre === Genres.ALL_GENRES);
+    .filter((film) => film.genre === activeGenre || activeGenre === Genres.ALL_GENRES)
+    .slice(0, shownFilmsCount);
   const genres = Object.values(Genres);
+
+  const showMoreClick = () => {
+    setShownFilmsCount(shownFilmsCount + SHOWN_FILMS_STEP);
+    console.log(shownFilmsCount);
+  }
 
   return (
     <>
@@ -87,13 +96,11 @@ function MainPage(props: Props) {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList genres={genres} activeGenre={activeGenre}/>
+          <GenresList genres={genres} activeGenre={activeGenre}/>
 
           <FilmsList films={filteredFilms}/>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {filteredFilms.length % SHOWN_FILMS_STEP === 0 && <ShowMore onClick={showMoreClick}/>}
         </section>
 
         <footer className="page-footer">
