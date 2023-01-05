@@ -1,6 +1,5 @@
 import {Film} from '../../types/film';
 import FilmsList from '../../components/films-list/films-list';
-import films from '../../mocks/films';
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../const';
 
@@ -9,6 +8,7 @@ type Props = {
 }
 
 function MyListPage(props: Props) {
+  const {films} = props;
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
