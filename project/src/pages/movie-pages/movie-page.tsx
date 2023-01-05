@@ -5,6 +5,7 @@ import {AppRoutes} from '../../const';
 import Tabs from '../../components/tabs/tabs';
 import {Review} from '../../types/review';
 import FilmsList from '../../components/films-list/films-list';
+import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
 
 
 type Props = {
@@ -14,8 +15,17 @@ type Props = {
 
 function MoviePage(props: Props) {
   const {films, reviews} = props;
+  console.log(films);
   const {id} = useParams();
-  const film = films.filter(film => film.id === id)[0];
+  if (!id || !parseInt(id, 10)) {
+    return <NotFoundErrorPage/>
+  }
+  const intId = parseInt(id, 10);
+  const film = films.filter(film => film.id === intId)[0];
+  console.log(film);
+  console.log(films.filter(film => film.id === intId));
+  console.log(film.id);
+  console.log(id);
 
   useEffect(() => {
   }, [id]);

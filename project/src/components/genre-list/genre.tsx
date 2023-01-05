@@ -1,6 +1,6 @@
-import {useAppDispatch} from "../../hooks";
-import React from "react";
-import {changeGenre} from "../../store/action";
+import {useAppDispatch} from '../../hooks';
+import React from 'react';
+import {changeGenre} from '../../store/action';
 
 type Props = {
   genre: string;

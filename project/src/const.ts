@@ -32,4 +32,8 @@ export enum Genres {
   ALL_GENRES = 'All genres',
 }
 
+export enum apiRoutes {
+  FILMS = '/films'
+}
+
 export const SHOWN_FILMS_STEP = 8;

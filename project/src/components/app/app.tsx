@@ -8,18 +8,24 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import NotFoundErrorPage from '../../pages/not-found-error-page/not-found-error-page';
 import MyListPage from '../../pages/my-list-page/my-list-page';
-import {Film} from '../../types/film';
 import {Review} from '../../types/review';
+import {useAppSelector} from '../../hooks';
+import Loader from "../loader/loader";
 
 
 type Props = {
-  promoFilm: Film,
-  films: Film[],
   reviews: Review[]
 }
 
 function App(props: Props): JSX.Element {
-  const {promoFilm, films, reviews} = props;
+  const {reviews} = props;
+  const {isDataLoaded, films} = useAppSelector((state) => state);
+  const promoFilm = films[0];
+
+  if (!isDataLoaded) {
+    return <Loader/>
+  }
+
 
   return (
     <BrowserRouter>
