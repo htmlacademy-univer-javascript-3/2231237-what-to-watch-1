@@ -6,6 +6,7 @@ import GenresList from "../../components/genre-list/genre-list";
 import {useAppSelector} from '../../hooks';
 import ShowMore from "../../components/show-more/show-more";
 import {useState} from "react";
+import HeaderUserInfo from "../../components/header-user-info/header-user-info";
 
 export type Props = {
   promoFilm: Film
@@ -36,23 +37,15 @@ function MainPage(props: Props) {
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href={'/'} className="logo__link">
+            <a href={AppRoutes.Main} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to={AppRoutes.SignIn} className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
+          <HeaderUserInfo/>
+
         </header>
 
         <div className="film-card__wrap">
