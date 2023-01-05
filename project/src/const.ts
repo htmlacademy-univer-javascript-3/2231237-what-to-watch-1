@@ -8,7 +8,7 @@ export enum AppRoutes {
   Unknown = '*'
 }
 
-export enum AuthorizationStatuses {
+export enum AuthorizationStatus {
   Auth = 'auth',
   NoAuth = 'no_auth'
 }
@@ -33,7 +33,9 @@ export enum Genres {
 }
 
 export enum apiRoutes {
-  FILMS = '/films'
+  FILMS = '/films',
+  LOGIN = '/login',
+  LOGOUT = '/logout'
 }
 
 export const SHOWN_FILMS_STEP = 8;

@@ -6,7 +6,7 @@ import VideoPlayer from '../video-player/video-player';
 
 type Props = {
   film: Film,
-  onMouseEnter: (id: string) => void,
+  onMouseEnter: (id: number | null) => void,
 }
 
 function FilmCard(props: Props) {
@@ -36,7 +36,7 @@ function FilmCard(props: Props) {
                setIsNeededToPlay(true);
              }}
              onMouseLeave={() => {
-               onMouseEnter('');
+               onMouseEnter(null);
                setIsNeededToPlay(false);
                setIsPlaying(false);
              }}

@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
-import {AppRoutes, AuthorizationStatuses} from '../../const';
+import {AppRoutes} from '../../const';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
 import PrivateRoute from '../private-routes/private-routes';
 import MoviePage from '../../pages/movie-pages/movie-page';
@@ -19,7 +19,7 @@ type Props = {
 
 function App(props: Props): JSX.Element {
   const {reviews} = props;
-  const {isDataLoaded, films} = useAppSelector((state) => state);
+  const {isDataLoaded, films, authStatus} = useAppSelector((state) => state);
   const promoFilm = films[0];
 
   if (!isDataLoaded) {
@@ -33,8 +33,7 @@ function App(props: Props): JSX.Element {
         <Route path={AppRoutes.Main} element={<MainPage promoFilm={promoFilm}/>}/>
         <Route path={AppRoutes.SignIn} element={<SignInPage/>}/>
         <Route path={AppRoutes.MyList}
-               element={<PrivateRoute authorizationStatus={AuthorizationStatuses.NoAuth}
-                                      children={<MyListPage films={films}/>}/>}
+               element={<PrivateRoute children={<MyListPage films={films}/>}/>}
         />
         <Route path={AppRoutes.Film}>
           <Route index element={<MoviePage films={films} reviews={reviews}/>}/>

@@ -9,8 +9,8 @@ type Props = {
 
 function FilmsList(props: Props) {
   const {films} = props;
-  const [, setActiveFilm] = useState('');
-  const handleMouseEnter = (id: string) => setActiveFilm(id);
+  const [, setActiveFilm] = useState<number | null>(null);
+  const handleMouseEnter = (id: number | null) => setActiveFilm(id);
 
   return (
     <div className="catalog__films-list">
