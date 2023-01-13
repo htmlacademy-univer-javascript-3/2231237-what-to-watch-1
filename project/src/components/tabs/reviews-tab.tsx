@@ -1,32 +1,32 @@
-import {Review} from '../../types/review';
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {useEffect} from "react";
+import {fetchReviewAction} from "../../store/api-actions";
 
-export type Props = {
-  reviews: Review[]
-}
-
-function ReviewsTab(props: Props) {
-  const {reviews} = props;
+function ReviewsTab() {
+  const {film, review} = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+  useEffect(() => {dispatch(fetchReviewAction(film?.id))}, [film?.id])
 
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
         {
-          reviews.map((review) =>
-            <div className="review">
+          review.map((reviews) =>
+            <div className="review" key={reviews.id}>
               <blockquote className="review__quote">
-                <p className="review__text">{review.text}</p>
+                <p className="review__text">{reviews.comment}</p>
                 <footer className="review__details">
-                  <cite className="review__author">{review.user.name}</cite>
-                  <time className="review__date" dateTime={review.date}>{review.date}</time>
+                  <cite className="review__author">{reviews.user.name}</cite>
+                  <time className="review__date" dateTime={reviews.date}>{reviews.date}</time>
                 </footer>
               </blockquote>
-              <div className="review__rating">{review.rating}</div>
+              <div className="review__rating">{reviews.rating}</div>
             </div>
           )
         }
       </div>
     </div>
   );
-};
+}
 
 export default ReviewsTab;

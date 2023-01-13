@@ -5,12 +5,14 @@ export enum AppRoutes {
   AddReview = '/films/:id/review',
   Player= '/player/:id',
   Main = '/',
-  Unknown = '*'
+  Unknown = '*',
+  NotFound = '/not-found'
 }
 
 export enum AuthorizationStatus {
   Auth = 'auth',
-  NoAuth = 'no_auth'
+  NoAuth = 'no_auth',
+  Unknown = 'unknown'
 }
 
 export enum TabTypes {
@@ -33,9 +35,13 @@ export enum Genres {
 }
 
 export enum apiRoutes {
-  FILMS = '/films',
-  LOGIN = '/login',
-  LOGOUT = '/logout'
+  FILMS = 'films',
+  LOGIN = 'login',
+  LOGOUT = 'logout',
+  SIMILAR = 'similar',
+  PROMO = 'promo',
+  FAVOURITES = 'favorite',
+  COMMENTS = 'comments',
 }
 
 export const SHOWN_FILMS_STEP = 8;

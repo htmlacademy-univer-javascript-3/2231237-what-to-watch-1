@@ -1,67 +1,62 @@
 import {Link} from "react-router-dom";
-import {AppRoutes} from '../../const';
 import CommentForm from '../../components/comment-form/comment-form';
-import {Film} from "../../types/film";
-
-type Props = {
-  film: Film
-}
+import {useAppSelector} from "../../hooks";
+import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
+import HeaderUserInfo from "../../components/header-user-info/header-user-info";
 
 
-function AddReviewPage(props: Props) {
-  const {id, name, posterImage} = props.film;
 
-  return (
-    <section className="film-card film-card--full">
-      <div className="film-card__header">
-        <div className="film-card__bg">
-          <img src={posterImage} alt={`${name} poster`}/>
-        </div>
+function AddReviewPage() {
 
-        <h1 className="visually-hidden">WTW</h1>
+  const {promoFilm} = useAppSelector((state) => state);
 
-        <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
+  if (!promoFilm) {
+    return <NotFoundErrorPage/>
+  }
+  else {
+    return (
+      <section className="film-card film-card--full">
+        <div className="film-card__header">
+          <div className="film-card__bg">
+            <img src={promoFilm?.backgroundImage} alt={`${promoFilm?.name} poster`}/>
           </div>
 
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <Link to={`films/${id}`} className="breadcrumbs__link">{name}</Link>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
+          <h1 className="visually-hidden">WTW</h1>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to={AppRoutes.SignIn}>Sign out</Link>
-            </li>
-          </ul>
-        </header>
+          <header className="page-header">
+            <div className="logo">
+              <a href="main.html" className="logo__link">
+                <span className="logo__letter logo__letter--1">W</span>
+                <span className="logo__letter logo__letter--2">T</span>
+                <span className="logo__letter logo__letter--3">W</span>
+              </a>
+            </div>
 
-        <div className="film-card__poster film-card__poster--small">
-          <img src={posterImage} alt={`${name} poster`} width="218"
-               height="327"
-          />
+            <nav className="breadcrumbs">
+              <ul className="breadcrumbs__list">
+                <li className="breadcrumbs__item">
+                  <Link to={`/films/${promoFilm?.id}`}  className="breadcrumbs__link">{promoFilm?.name}</Link>
+                </li>
+                <li className="breadcrumbs__item">
+                  <a className="breadcrumbs__link">Add review</a>
+                </li>
+              </ul>
+            </nav>
+
+            <HeaderUserInfo/>
+          </header>
+
+          <div className="film-card__poster film-card__poster--small">
+            <img src={promoFilm?.posterImage} alt={`${promoFilm?.name} poster`} width="218"
+                 height="327"
+            />
+          </div>
         </div>
-      </div>
 
-      <CommentForm/>
-    </section>
-  );
+        <CommentForm/>
+      </section>
+    );
+  }
 }
 
 export default AddReviewPage;

@@ -1,49 +1,46 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
-import {AppRoutes} from '../../const';
+import {AppRoutes, AuthorizationStatus} from '../../const';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
 import PrivateRoute from '../private-routes/private-routes';
-import MoviePage from '../../pages/movie-pages/movie-page';
 import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import NotFoundErrorPage from '../../pages/not-found-error-page/not-found-error-page';
 import MyListPage from '../../pages/my-list-page/my-list-page';
-import {Review} from '../../types/review';
 import {useAppSelector} from '../../hooks';
 import Loader from "../loader/loader";
+import browserHistory from "../../browser-history";
+import HistoryRouter from "../history-router/history-router";
+import MoviePage from "../../pages/movie-pages/movie-page";
 
+function App(): JSX.Element {
+  const {isDataLoaded, authStatus} = useAppSelector((state) => state);
 
-type Props = {
-  reviews: Review[]
-}
-
-function App(props: Props): JSX.Element {
-  const {reviews} = props;
-  const {isDataLoaded, films, authStatus} = useAppSelector((state) => state);
-  const promoFilm = films[0];
-
-  if (!isDataLoaded) {
-    return <Loader/>
+  if (authStatus === AuthorizationStatus.Unknown || isDataLoaded) {
+    return (
+      <Loader/>
+    );
   }
 
-
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
-        <Route path={AppRoutes.Main} element={<MainPage promoFilm={promoFilm}/>}/>
+        <Route index element={<MainPage/>}/>
         <Route path={AppRoutes.SignIn} element={<SignInPage/>}/>
-        <Route path={AppRoutes.MyList}
-               element={<PrivateRoute children={<MyListPage films={films}/>}/>}
+        <Route path={AppRoutes.Film} element={<MoviePage/>}/>
+        <Route path={AppRoutes.AddReview} element={<AddReviewPage/>}/>
+        <Route path={AppRoutes.Player} element={<PlayerPage/>}/>
+        <Route path='notFound' element={<NotFoundErrorPage/>}/>
+        <Route
+          path={AppRoutes.MyList}
+          element={
+            <PrivateRoute>
+              <MyListPage/>
+            </PrivateRoute>
+          }
         />
-        <Route path={AppRoutes.Film}>
-          <Route index element={<MoviePage films={films} reviews={reviews}/>}/>
-          <Route path={'review'}
-                 element={<AddReviewPage film={films[0]}/>}/>
-        </Route>
-        <Route path={AppRoutes.Player} element={<PlayerPage film={films[0]}/>}/>
-        <Route path={AppRoutes.Unknown} element={<NotFoundErrorPage/>}/>
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
