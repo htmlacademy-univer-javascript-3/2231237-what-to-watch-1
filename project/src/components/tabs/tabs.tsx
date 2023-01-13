@@ -6,14 +6,13 @@ import DetailsTab from './details-tab';
 import OverviewTab from './overview-tab';
 import ReviewsTab from './reviews-tab';
 
-export type Props = {
-  film: Film,
-  reviews: Review[]
+
+type Props = {
+  film: Film | null
 }
 
-
 function Tabs(props: Props) {
-  const {film, reviews} = props;
+  const {film} = props;
   const [activeTab, setActiveTab] = useState(TabTypes.OVERVIEW);
 
   const renderTabByType = () => {
@@ -23,7 +22,7 @@ function Tabs(props: Props) {
       case TabTypes.OVERVIEW:
         return <OverviewTab film={film}/>
       case TabTypes.REVIEW:
-        return <ReviewsTab reviews={reviews}/>
+        return <ReviewsTab/>
     }
   };
 

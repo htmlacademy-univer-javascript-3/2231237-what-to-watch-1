@@ -1,36 +1,29 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {FormEvent, useRef, useState} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {AuthData} from '../../types/auth-data';
 import {loginAction} from '../../store/api-actions';
-import {AppRoutes} from "../../const";
-import {useNavigate} from "react-router-dom";
 
 function SignInPage() {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
-    navigate(AppRoutes.Main);
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
 
-    if (email !== '' && password !== '') {
-      onSubmit({email, password});
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      onSubmit({
+        email: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
     }
-  };
+  }
 
   return (
     <div className="user-page">
@@ -51,13 +44,13 @@ function SignInPage() {
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
-                     id="user-email" value={email} onChange={handleEmailChange}
+                     id="user-email" ref={loginRef}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
               <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
-                     id="user-password" value={password} onChange={handlePasswordChange}
+                     id="user-password" ref={passwordRef}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>

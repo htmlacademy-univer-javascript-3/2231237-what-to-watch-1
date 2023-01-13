@@ -3,19 +3,30 @@ import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
 import {store} from './store';
-import {fetchAuthAction, fetchFilmsAction} from './store/api-actions';
+import {
+  checkAuthAction,
+  fetchAllFilmsAction,
+  fetchFavoriteFilmsAction,
+  fetchPromoFilmAction,
+  fetchReviewAction
+} from './store/api-actions';
+import ErrorMessage from "./components/error-card/error-card";
 
-store.dispatch(fetchFilmsAction());
-store.dispatch(fetchAuthAction());
+store.dispatch(checkAuthAction());
+store.dispatch(fetchAllFilmsAction());
+store.dispatch(fetchPromoFilmAction());
+store.dispatch(fetchFavoriteFilmsAction());
+store.dispatch(fetchReviewAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App reviews={[]}/>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <ErrorMessage/>
+      <App/>
+    </React.StrictMode>,
+  </Provider>
 );

@@ -1,10 +1,10 @@
 import {Film} from './film';
 import {store} from '../store';
 
-export type AppState = {
-  films: Film[];
-  activeGenre: string;
-};
+// export type AppState = {
+//   films: Film[];
+//   activeGenre: string;
+// };
 
 export type State = ReturnType<typeof store.getState>;
 
