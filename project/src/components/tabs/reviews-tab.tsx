@@ -1,11 +1,20 @@
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {useEffect} from "react";
 import {fetchReviewAction} from "../../store/api-actions";
+import {getFilm} from "../../store/film/action";
+import NotFoundErrorPage from "../../pages/not-found-error-page/not-found-error-page";
+import {getReviews} from "../../store/review/action";
 
 function ReviewsTab() {
-  const {film, review} = useAppSelector((state) => state);
+  const film = useAppSelector(getFilm);
   const dispatch = useAppDispatch();
-  useEffect(() => {dispatch(fetchReviewAction(film?.id))}, [film?.id])
+
+  if (!film)
+    return <NotFoundErrorPage/>
+
+  useEffect(() => {dispatch(fetchReviewAction(film.id))}, [film.id])
+
+  const review = useAppSelector(getReviews);
 
   return (
     <div className="film-card__reviews film-card__row">

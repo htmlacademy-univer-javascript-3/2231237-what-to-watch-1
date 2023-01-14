@@ -1,8 +1,8 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from 'react';
 
 type VideoPlayerProps = {
-  poster: string,
-  previewVideoLink: string
+  poster: string;
+  previewVideoLink: string;
 }
 
 function VideoPlayer({poster, previewVideoLink}: VideoPlayerProps) {
@@ -26,8 +26,9 @@ function VideoPlayer({poster, previewVideoLink}: VideoPlayerProps) {
 
   }, [isPlaying]);
   return (
-    <video muted autoPlay poster={poster} width={280} height={175} ref={videoRef} src={previewVideoLink}
-           onMouseEnter={() => setIsPlaying(true)} onMouseLeave={() => setIsPlaying(false)}>
+    <video muted poster={poster} width={280} height={175} ref={videoRef} src={previewVideoLink}
+      onMouseEnter={() => setIsPlaying(true)} onMouseLeave={() => setIsPlaying(false)}
+    >
     </video>
   );
 }

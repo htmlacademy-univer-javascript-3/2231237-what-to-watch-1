@@ -1,26 +1,23 @@
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import {AppRoutes} from '../../const';
+import {apiRoutes, AppRoutes} from '../../const';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
 import {useEffect} from "react";
 import {fetchFilmAction} from "../../store/api-actions";
+import {getFilms} from "../../store/films/action";
+import {getFilm} from "../../store/film/action";
 
 function PlayerPage() {
-  const {film} = useAppSelector((state) => state);
-  const params = useParams();
+  const film = useAppSelector(getFilm);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchFilmAction(params.id))
-  })
-  if (film === undefined) {
+  if (!film) {
     return <NotFoundErrorPage/>;
   }
   return (
     <div className="player">
-      <video src={film?.videoLink} className="player__video" poster={film?.posterImage}></video>
+      <video src={film.videoLink} className="player__video" poster={film.posterImage}></video>
 
-      <Link to={AppRoutes.Main}>
+      <Link to={apiRoutes.DEFAULT}>
         <button type="button" className="player__exit">Exit</button>
       </Link>
 

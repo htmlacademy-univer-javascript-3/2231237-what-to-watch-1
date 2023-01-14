@@ -1,12 +1,12 @@
 import {Film} from '../../types/film';
 import NotFoundErrorPage from "../../pages/not-found-error-page/not-found-error-page";
+import {useAppSelector} from "../../hooks";
+import {getFilm} from "../../store/film/action";
 
-type Props = {
-  film: Film | null
-}
 
-function DetailsTab(props: Props) {
-  const {film} = props;
+
+function DetailsTab() {
+  const film = useAppSelector(getFilm);
 
   if (!film){
     return <NotFoundErrorPage/>;
@@ -17,12 +17,12 @@ function DetailsTab(props: Props) {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Director</strong>
-          <span className="film-card__details-value">{film?.director}</span>
+          <span className="film-card__details-value">{film.director}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {film?.starring.join(',\n').split('\n')}
+            {film.starring.join(',\n').split('\n')}
           </span>
         </p>
       </div>
@@ -30,15 +30,15 @@ function DetailsTab(props: Props) {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{film?.runTime}</span>
+          <span className="film-card__details-value">{film.runTime}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">{film?.genre}</span>
+          <span className="film-card__details-value">{film.genre}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{film?.releaseYear}</span>
+          <span className="film-card__details-value">{film.releaseYear}</span>
         </p>
       </div>
     </div>
