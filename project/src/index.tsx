@@ -6,17 +6,14 @@ import {store} from './store';
 import {
   checkAuthAction,
   fetchAllFilmsAction,
-  fetchFavoriteFilmsAction,
-  fetchPromoFilmAction,
-  fetchReviewAction
+  fetchPromoFilmAction
 } from './store/api-actions';
-import ErrorMessage from "./components/error-card/error-card";
+import browserHistory from './browser-history';
+import HistoryRouter from './components/history-router/history-router';
 
 store.dispatch(checkAuthAction());
 store.dispatch(fetchAllFilmsAction());
 store.dispatch(fetchPromoFilmAction());
-store.dispatch(fetchFavoriteFilmsAction());
-store.dispatch(fetchReviewAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -24,9 +21,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <ErrorMessage/>
+    <HistoryRouter history={browserHistory}>
       <App/>
-    </React.StrictMode>,
+    </HistoryRouter>
   </Provider>
 );

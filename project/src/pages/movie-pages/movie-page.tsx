@@ -7,17 +7,29 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import HeaderUserInfo from "../../components/header-user-info/header-user-info";
 import FilmCard from "../../components/film-card/film-card";
 import {fetchFilmAction, fetchGetSimilarAction} from "../../store/api-actions";
+import {getFavoriteFilms} from "../../store/films/action";
+import {getFilm, getLoadedDataStatusFilm, getSimilarFilms} from "../../store/film/action";
+import {getAuthorizationStatus} from "../../store/user/action";
+import Loader from "../../components/loader/loader";
 
 
 function MoviePage() {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const {favoriteFilms, film, authStatus, similarFilms} = useAppSelector((state) => state);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const film = useAppSelector(getFilm);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const isLoadedFilm = useAppSelector(getLoadedDataStatusFilm);
   useEffect(() => {
     dispatch(fetchFilmAction(params.id));
     dispatch(fetchGetSimilarAction(params.id))
-  }, [params.id])
-  if (film === undefined) {
+  }, [params.id]);
+
+  if (isLoadedFilm)
+    return <Loader/>
+
+  if (!film) {
     return (<NotFoundErrorPage/>);
   }
 
@@ -27,7 +39,7 @@ function MoviePage() {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film?.posterImage} alt={film?.name}/>
+            <img src={film.posterImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -46,19 +58,19 @@ function MoviePage() {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film?.name}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{film?.genre}</span>
-                <span className="film-card__year">{film?.releaseYear}</span>
+                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__year">{film.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <Link to={`/player/${film.id}`} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -66,7 +78,7 @@ function MoviePage() {
                   <span>My list</span>
                   <span className="film-card__count">{favoriteFilms.length}</span>
                 </button>
-                {authStatus === AuthorizationStatus.Auth
+                {authorizationStatus === AuthorizationStatus.Auth
                   ? <Link to={`/films/${film?.id}/review`} className="btn film-card__button">Add review</Link> : null}
               </div>
             </div>
@@ -76,11 +88,11 @@ function MoviePage() {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film?.posterImage} alt={`${film?.name} poster`} width="218"
+              <img src={film.posterImage} alt={`${film.name} poster`} width="218"
                    height="327"/>
             </div>
 
-            <Tabs film={film}/>
+            <Tabs/>
           </div>
         </div>
       </section>

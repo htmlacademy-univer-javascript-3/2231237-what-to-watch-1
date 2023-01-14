@@ -1,26 +1,19 @@
 import {useState} from 'react';
-import {Film} from '../../types/film';
-import {Review} from '../../types/review';
 import {TabTypes} from '../../const';
 import DetailsTab from './details-tab';
 import OverviewTab from './overview-tab';
 import ReviewsTab from './reviews-tab';
 
 
-type Props = {
-  film: Film | null
-}
-
-function Tabs(props: Props) {
-  const {film} = props;
+function Tabs() {
   const [activeTab, setActiveTab] = useState(TabTypes.OVERVIEW);
 
   const renderTabByType = () => {
     switch (activeTab) {
       case TabTypes.DETAILS:
-        return <DetailsTab film={film}/>
+        return <DetailsTab/>
       case TabTypes.OVERVIEW:
-        return <OverviewTab film={film}/>
+        return <OverviewTab/>
       case TabTypes.REVIEW:
         return <ReviewsTab/>
     }

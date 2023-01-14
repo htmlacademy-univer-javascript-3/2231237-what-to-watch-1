@@ -3,14 +3,14 @@ import CommentForm from '../../components/comment-form/comment-form';
 import {useAppSelector} from "../../hooks";
 import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
 import HeaderUserInfo from "../../components/header-user-info/header-user-info";
+import {getFilm} from "../../store/film/action";
 
 
 
 function AddReviewPage() {
+  const film = useAppSelector(getFilm);
 
-  const {promoFilm} = useAppSelector((state) => state);
-
-  if (!promoFilm) {
+  if (!film) {
     return <NotFoundErrorPage/>
   }
   else {
@@ -18,7 +18,7 @@ function AddReviewPage() {
       <section className="film-card film-card--full">
         <div className="film-card__header">
           <div className="film-card__bg">
-            <img src={promoFilm?.backgroundImage} alt={`${promoFilm?.name} poster`}/>
+            <img src={film.backgroundImage} alt={`${film.name} poster`}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -35,7 +35,7 @@ function AddReviewPage() {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/films/${promoFilm?.id}`}  className="breadcrumbs__link">{promoFilm?.name}</Link>
+                  <Link to={`/films/${film.id}`}  className="breadcrumbs__link">{film.name}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -47,7 +47,7 @@ function AddReviewPage() {
           </header>
 
           <div className="film-card__poster film-card__poster--small">
-            <img src={promoFilm?.posterImage} alt={`${promoFilm?.name} poster`} width="218"
+            <img src={film.posterImage} alt={`${film.name} poster`} width="218"
                  height="327"
             />
           </div>

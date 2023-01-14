@@ -2,12 +2,14 @@ import {Link} from 'react-router-dom';
 import {AppRoutes, AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
+import {getAuthorizationStatus, getUser} from "../../store/user/action";
 
 
 function HeaderUserInfo() {
-  const {authStatus, user} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const user = useAppSelector(getUser);
   const dispatch = useAppDispatch();
-  if (authStatus === AuthorizationStatus.NoAuth) {
+  if (authorizationStatus === AuthorizationStatus.NoAuth) {
     return (
       <div className="user-block">
         <Link className="user-block__link" to={AppRoutes.SignIn}>Sign in</Link>

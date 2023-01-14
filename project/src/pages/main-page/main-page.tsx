@@ -8,20 +8,32 @@ import {useEffect, useState} from "react";
 import HeaderUserInfo from "../../components/header-user-info/header-user-info";
 import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
 import FilmCard from "../../components/film-card/film-card";
-import {resetFilmsCount, showMore} from "../../store/action";
+import {resetCount, showMore} from "../../store/action";
+import {getPromoFilm} from "../../store/film/action";
+import {getFavoriteFilms, getFilmsCount, getFilmsWithGenre, getGenre} from "../../store/films/action";
 
 
 function MainPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {genre, films, filmsCount, promoFilm, favoriteFilms, genresFilm} = useAppSelector((state) => state);
-  const [,setEnter] = useState<Film | null>(null);
+  useEffect(() => {
+    dispatch(resetCount())
+  }, [dispatch])
+
+  const promoFilm = useAppSelector(getPromoFilm);
+  const genre = useAppSelector(getGenre);
+  const filmsCount = useAppSelector(getFilmsCount);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const genresFilm = useAppSelector(getFilmsWithGenre)
+
+  if (promoFilm === undefined)
+    return <NotFoundErrorPage/>
 
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm?.posterImage} alt={promoFilm?.name}/>
+          <img src={promoFilm.posterImage} alt={promoFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -42,22 +54,21 @@ function MainPage() {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm?.posterImage} alt={`${promoFilm?.posterImage} poster`} width="218"
+              <img src={promoFilm.posterImage} alt={`${promoFilm.posterImage} poster`} width="218"
                    height="327"/>
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm?.name}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilm?.genre}</span>
-                <span className="film-card__year">{promoFilm?.releaseYear}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
 
-                <Link to={`/player/${promoFilm?.id}`}>
-                  <button className="btn btn--play film-card__button" type="button" onClick={() => {
-                    dispatch(resetFilmsCount());}}>
+                <Link to={`/player/${promoFilm.id}`}>
+                  <button className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
@@ -65,9 +76,7 @@ function MainPage() {
                   </button>
                 </Link>
 
-                <Link to={AppRoutes.MyList} className="btn btn--list film-card__button" type="button" onClick={() => {
-                  dispatch(resetFilmsCount());
-                }}>
+                <Link to={AppRoutes.MyList} className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -86,12 +95,8 @@ function MainPage() {
           <GenresList genre={genre}/>
           <div className="catalog__films-list">
             {genresFilm.slice(0, filmsCount).map((film) => (
-              <FilmCard key={film.id} film={film} onMouseEnter={() => {
-                setEnter(film);
-              }}
-                        onMouseLeave={() => setEnter(null)} onClick={() => {
+              <FilmCard key={film.id} film={film} onClick={() => {
                 navigate(`/films/${film.id}`);
-                dispatch(resetFilmsCount());
               }}
               />))}
           </div>

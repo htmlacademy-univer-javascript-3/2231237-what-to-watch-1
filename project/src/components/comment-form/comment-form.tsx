@@ -1,10 +1,11 @@
 import {FormEvent, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {fetchAddReviewAction} from "../../store/api-actions";
+import {getFilm} from "../../store/film/action";
 
 function CommentForm() {
   const dispatch = useAppDispatch();
-  const {film} = useAppSelector((state) => state);
+  const film = useAppSelector(getFilm);
   const [rating, setRating] = useState({ratingStars: 8, reviewText: ''});
 
   const handleReviewSubmit = (evt: FormEvent<HTMLFormElement>) => {

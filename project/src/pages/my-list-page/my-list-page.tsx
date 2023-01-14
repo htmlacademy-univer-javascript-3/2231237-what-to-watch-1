@@ -1,10 +1,11 @@
 import {useAppSelector} from "../../hooks";
 import HeaderUserInfo from "../../components/header-user-info/header-user-info";
 import FilmCard from "../../components/film-card/film-card";
+import {getFavoriteFilms} from "../../store/films/action";
 
 
 function MyListPage() {
-  const {favoriteFilms} = useAppSelector((state) => state);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
