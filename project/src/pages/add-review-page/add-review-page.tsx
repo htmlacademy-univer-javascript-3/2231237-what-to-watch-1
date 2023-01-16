@@ -1,17 +1,30 @@
-import {Link} from "react-router-dom";
+import {
+  Link,
+  useParams
+} from 'react-router-dom';
+import {
+  useAppDispatch,
+  useAppSelector
+} from '../../hooks';
 import CommentForm from '../../components/comment-form/comment-form';
-import {useAppSelector} from "../../hooks";
-import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
-import HeaderUserInfo from "../../components/header-user-info/header-user-info";
-import {getFilm} from "../../store/film/action";
-
+import NotFoundErrorPage from '../not-found-error-page/not-found-error-page';
+import HeaderUserInfo from '../../components/header-user-info/header-user-info';
+import {getFilm} from '../../store/film/action';
+import {useEffect} from 'react';
+import {fetchFilmAction} from '../../store/api-actions';
+import {apiRoutes} from '../../const';
 
 
 function AddReviewPage() {
   const film = useAppSelector(getFilm);
+  const params = useParams();
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchFilmAction(params.id));
+  }, [dispatch, params.id]);
 
   if (!film) {
-    return <NotFoundErrorPage/>
+    return <NotFoundErrorPage/>;
   }
   else {
     return (
@@ -35,7 +48,7 @@ function AddReviewPage() {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/films/${film.id}`}  className="breadcrumbs__link">{film.name}</Link>
+                  <Link to={`${apiRoutes.FILMS}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -48,7 +61,7 @@ function AddReviewPage() {
 
           <div className="film-card__poster film-card__poster--small">
             <img src={film.posterImage} alt={`${film.name} poster`} width="218"
-                 height="327"
+              height="327"
             />
           </div>
         </div>

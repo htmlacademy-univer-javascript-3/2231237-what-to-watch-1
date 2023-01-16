@@ -1,33 +1,45 @@
-import {Link, useNavigate} from 'react-router-dom';
-import {Film} from '../../types/film';
-import {AppRoutes, SHOWN_FILMS_STEP} from '../../const';
-import GenresList from "../../components/genre-list/genre-list";
-import {useAppDispatch, useAppSelector} from '../../hooks';
-// import ShowMore from "../../components/show-more/show-more";
-import {useEffect, useState} from "react";
-import HeaderUserInfo from "../../components/header-user-info/header-user-info";
-import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
-import FilmCard from "../../components/film-card/film-card";
-import {resetCount, showMore} from "../../store/action";
-import {getPromoFilm} from "../../store/film/action";
-import {getFavoriteFilms, getFilmsCount, getFilmsWithGenre, getGenre} from "../../store/films/action";
+import {useEffect} from 'react';
+import {
+  Link,
+  useNavigate
+} from 'react-router-dom';
+import {
+  apiRoutes,
+  AppRoutes
+} from '../../const';
+import {
+  useAppDispatch,
+  useAppSelector
+} from '../../hooks';
+import {
+  resetCount,
+  showMore
+} from '../../store/action';
+import {
+  getFilmsCount,
+  getFilmsWithGenre,
+  getGenre
+} from '../../store/films/action';
+import {getPromoFilm} from '../../store/film/action';
+import HeaderUserInfo from '../../components/header-user-info/header-user-info';
+import FilmCard from '../../components/film-card/film-card';
+import GenresList from '../../components/genre-list/genre-list';
+import {fetchPromoFilmAction} from '../../store/api-actions';
+import MovieInList from '../movie-pages/movie-in-list';
 
 
 function MainPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(resetCount())
-  }, [dispatch])
+    dispatch(resetCount());
+    dispatch(fetchPromoFilmAction());
+  }, [dispatch]);
 
   const promoFilm = useAppSelector(getPromoFilm);
   const genre = useAppSelector(getGenre);
   const filmsCount = useAppSelector(getFilmsCount);
-  const favoriteFilms = useAppSelector(getFavoriteFilms);
-  const genresFilm = useAppSelector(getFilmsWithGenre)
-
-  if (promoFilm === undefined)
-    return <NotFoundErrorPage/>
+  const genresFilm = useAppSelector(getFilmsWithGenre);
 
   return (
     <>
@@ -55,7 +67,8 @@ function MainPage() {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img src={promoFilm.posterImage} alt={`${promoFilm.posterImage} poster`} width="218"
-                   height="327"/>
+                height="327"
+              />
             </div>
 
             <div className="film-card__desc">
@@ -67,7 +80,7 @@ function MainPage() {
 
               <div className="film-card__buttons">
 
-                <Link to={`/player/${promoFilm.id}`}>
+                <Link to={`${apiRoutes.PLAYER}/${promoFilm.id}`}>
                   <button className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
@@ -75,14 +88,7 @@ function MainPage() {
                     <span>Play</span>
                   </button>
                 </Link>
-
-                <Link to={AppRoutes.MyList} className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">{favoriteFilms.length}</span>
-                </Link>
+                <MovieInList film={promoFilm}/>
               </div>
             </div>
           </div>
@@ -96,12 +102,13 @@ function MainPage() {
           <div className="catalog__films-list">
             {genresFilm.slice(0, filmsCount).map((film) => (
               <FilmCard key={film.id} film={film} onClick={() => {
-                navigate(`/films/${film.id}`);
+                navigate(`${apiRoutes.FILMS}/${film.id}`);
               }}
               />))}
           </div>
           <div className="catalog__more">
-            <button className="catalog__button" type="button" onClick={() => dispatch(showMore())}>Show more</button>
+            {filmsCount <= genresFilm.length &&
+              <button className="catalog__button" type="button" onClick={() => dispatch(showMore())}>Show more</button>}
           </div>
         </section>
 

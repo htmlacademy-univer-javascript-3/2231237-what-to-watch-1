@@ -1,16 +1,20 @@
-import {useEffect, useRef, useState} from 'react';
+import {
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 
-type VideoPlayerProps = {
+type Props = {
   poster: string;
   previewVideoLink: string;
 }
 
-function VideoPlayer({poster, previewVideoLink}: VideoPlayerProps) {
+function VideoPlayer(props: Props) {
+  const {poster, previewVideoLink} = props;
   const [, setIsLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   useEffect(() => {
-
     if (videoRef.current === null) {
       return;
     }

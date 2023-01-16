@@ -11,11 +11,11 @@ function Tabs() {
   const renderTabByType = () => {
     switch (activeTab) {
       case TabTypes.DETAILS:
-        return <DetailsTab/>
+        return <DetailsTab/>;
       case TabTypes.OVERVIEW:
-        return <OverviewTab/>
+        return <OverviewTab/>;
       case TabTypes.REVIEW:
-        return <ReviewsTab/>
+        return <ReviewsTab/>;
     }
   };
 
@@ -23,13 +23,13 @@ function Tabs() {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${activeTab === TabTypes.OVERVIEW ? "film-nav__item--active" : ""}`}>
+          <li className={`film-nav__item ${activeTab === TabTypes.OVERVIEW ? 'film-nav__item--active' : ''}`}>
             <a className="film-nav__link" onClick={() => setActiveTab(TabTypes.OVERVIEW)}>Overview</a>
           </li>
-          <li className={`film-nav__item ${activeTab === TabTypes.DETAILS ? "film-nav__item--active" : ""}`}>
+          <li className={`film-nav__item ${activeTab === TabTypes.DETAILS ? 'film-nav__item--active' : ''}`}>
             <a className="film-nav__link" onClick={() => setActiveTab(TabTypes.DETAILS)}>Details</a>
           </li>
-          <li className={`film-nav__item ${activeTab === TabTypes.REVIEW ? "film-nav__item--active" : ""}`}>
+          <li className={`film-nav__item ${activeTab === TabTypes.REVIEW ? 'film-nav__item--active' : ''}`}>
             <a className="film-nav__link" onClick={() => setActiveTab(TabTypes.REVIEW)}>Reviews</a>
           </li>
         </ul>

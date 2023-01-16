@@ -1,6 +1,9 @@
-import { useState, useLayoutEffect, FC } from 'react';
-import { Router } from 'react-router-dom';
-import type { BrowserHistory } from 'history';
+import {
+  useState,
+  useLayoutEffect,
+  FC } from 'react';
+import {Router} from 'react-router-dom';
+import type {BrowserHistory} from 'history';
 
 type Props = {
   history: BrowserHistory;
@@ -9,7 +12,7 @@ type Props = {
 }
 
 const HistoryRouter: FC<Props> = (props) => {
-  const { history, basename, children } = props;
+  const {history, basename, children} = props;
   const [state, setState] = useState({ action: history.action, location: history.location });
 
   useLayoutEffect(() => history.listen(setState), [history]);

@@ -37,6 +37,7 @@ export enum Genres {
 export enum apiRoutes {
   DEFAULT = '/',
   FILMS = '/films',
+  FILM = '/film',
   LOGIN = '/login',
   LOGOUT = '/logout',
   SIMILAR = '/similar',
@@ -45,7 +46,7 @@ export enum apiRoutes {
   COMMENTS = '/comments',
   NOT_FOUND = '/notFound',
   // Review = '/review',
-  // Player = '/player',
+  PLAYER = '/player',
   // MyList = '/mylist'
 }
 
@@ -54,7 +55,13 @@ export enum NameSpace {
   Film = 'FILM',
   Review = 'REVIEW',
   User = 'USER',
+  FavoriteFilms = 'FAVORITE',
 }
 
 export const SHOWN_FILMS_STEP = 8;
 export const INITIAL_GENRE_STATE = 'All genres';
+export const INITIAL_FILM_RATING_STARS = 8;
+export const MIN_REVIEW_TEXT_LENGTH = 50;
+export const MAX_REVIEW_TEXT_LENGTH = 400;
+export const MAX_STARS_COUNT = 10;
+export const SIMILAR_FILMS_COUNT = 4;

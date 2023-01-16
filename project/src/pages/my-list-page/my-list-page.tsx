@@ -1,20 +1,35 @@
-import {useAppSelector} from "../../hooks";
-import HeaderUserInfo from "../../components/header-user-info/header-user-info";
-import FilmCard from "../../components/film-card/film-card";
-import {getFavoriteFilms} from "../../store/films/action";
+import {useEffect} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import HeaderUserInfo from '../../components/header-user-info/header-user-info';
+import FilmCard from '../../components/film-card/film-card';
+import {getFavoriteFilms, getLoadedDataStatusFavoriteFilm} from '../../store/favorite-films/action';
+import {fetchFavoriteFilmsAction} from '../../store/api-actions';
+import Loader from '../../components/loader/loader';
+import {apiRoutes} from '../../const';
 
 
 function MyListPage() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isLoaded = useAppSelector(getLoadedDataStatusFavoriteFilm);
+  useEffect(() => {
+    dispatch(fetchFavoriteFilmsAction());
+  }, [dispatch]);
+
   const favoriteFilms = useAppSelector(getFavoriteFilms);
+  if (isLoaded) {
+    return <Loader/>;
+  }
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link to={apiRoutes.DEFAULT} className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteFilms.length}</span></h1>
@@ -23,15 +38,15 @@ function MyListPage() {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        {/*<FilmsList films={films}/>*/}
       </section>
 
       <footer className="page-footer">
         <div className="catalog__films-list">
           {favoriteFilms.map((film) => (
-            <article className="small-film-card catalog__films-card" key={film.id}>
-              <FilmCard film={film}/>
-            </article>
+            <FilmCard key={film.id} film={film} onClick={() => {
+              navigate(`${apiRoutes.FILMS}/${film.id}`);
+            }}
+            />
           ))}
         </div>
 
