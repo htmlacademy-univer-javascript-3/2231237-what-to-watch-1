@@ -5,7 +5,7 @@ export type Film = {
   releaseYear: number,
   genre: string,
   rating: number,
-  scoreCount: number,
+  scoresCount: number,
   starring: string[],
   posterImage: string,
   previewImage: string,

@@ -1,8 +1,6 @@
-import {Film} from '../../types/film';
-import NotFoundErrorPage from "../../pages/not-found-error-page/not-found-error-page";
-import {useAppSelector} from "../../hooks";
-import {getFilm} from "../../store/film/action";
-
+import NotFoundErrorPage from '../../pages/not-found-error-page/not-found-error-page';
+import {useAppSelector} from '../../hooks';
+import {getFilm} from '../../store/film/action';
 
 
 function DetailsTab() {
@@ -34,7 +32,7 @@ function DetailsTab() {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">{film.genre}</span>
+          <span className="film-card__details-value">{`${Math.floor(film.runTime / 60)}h ${film.runTime % 60}m`}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>

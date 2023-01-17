@@ -1,36 +1,36 @@
-import {Link, useParams} from 'react-router-dom';
 import {useEffect} from 'react';
-import {AppRoutes, AuthorizationStatus} from '../../const';
+import {Link, useNavigate, useParams} from 'react-router-dom';
+import {apiRoutes, AppRoutes, AuthorizationStatus, SIMILAR_FILMS_COUNT} from '../../const';
 import Tabs from '../../components/tabs/tabs';
-import NotFoundErrorPage from "../not-found-error-page/not-found-error-page";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import HeaderUserInfo from "../../components/header-user-info/header-user-info";
-import FilmCard from "../../components/film-card/film-card";
-import {fetchFilmAction, fetchGetSimilarAction} from "../../store/api-actions";
-import {getFavoriteFilms} from "../../store/films/action";
-import {getFilm, getLoadedDataStatusFilm, getSimilarFilms} from "../../store/film/action";
-import {getAuthorizationStatus} from "../../store/user/action";
-import Loader from "../../components/loader/loader";
+import NotFoundErrorPage from '../not-found-error-page/not-found-error-page';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import HeaderUserInfo from '../../components/header-user-info/header-user-info';
+import FilmCard from '../../components/film-card/film-card';
+import {fetchFilmAction, fetchGetSimilarAction} from '../../store/api-actions';
+import {getFilm, getLoadedDataStatusFilm, getSimilarFilms} from '../../store/film/action';
+import {getAuthorizationStatus} from '../../store/user/action';
+import Loader from '../../components/loader/loader';
+import MovieInList from './movie-in-list';
 
 
 function MoviePage() {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const navigate = useNavigate();
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const similarFilms = useAppSelector(getSimilarFilms);
   const isLoadedFilm = useAppSelector(getLoadedDataStatusFilm);
   useEffect(() => {
     dispatch(fetchFilmAction(params.id));
-    dispatch(fetchGetSimilarAction(params.id))
-  }, [params.id]);
+    dispatch(fetchGetSimilarAction(params.id));
+  }, [dispatch, params.id]);
 
-  if (isLoadedFilm)
-    return <Loader/>
-
+  if (isLoadedFilm) {
+    return <Loader/>;
+  }
   if (!film) {
-    return (<NotFoundErrorPage/>);
+    return <NotFoundErrorPage/>;
   }
 
 
@@ -65,21 +65,15 @@ function MoviePage() {
               </p>
 
               <div className="film-card__buttons">
-                <Link to={`/player/${film.id}`} className="btn btn--play film-card__button" type="button">
+                <Link to={`${apiRoutes.PLAYER}/${film.id}`} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">{favoriteFilms.length}</span>
-                </button>
-                {authorizationStatus === AuthorizationStatus.Auth
-                  ? <Link to={`/films/${film?.id}/review`} className="btn film-card__button">Add review</Link> : null}
+                <MovieInList film={film}/>
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                  <Link to={`${apiRoutes.FILMS}/${film.id}/review`} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -89,7 +83,8 @@ function MoviePage() {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img src={film.posterImage} alt={`${film.name} poster`} width="218"
-                   height="327"/>
+                height="327"
+              />
             </div>
 
             <Tabs/>
@@ -101,7 +96,13 @@ function MoviePage() {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           {
-            similarFilms.slice(0, 4).map((film) => <FilmCard key={film.id} film={film}/>)
+            similarFilms.slice(0, SIMILAR_FILMS_COUNT).map((similarFilm) =>
+              (<FilmCard key={similarFilm.id} film={similarFilm} onClick={() => {
+                navigate(`${apiRoutes.FILMS}/${similarFilm.id}`);
+              }}
+              />
+              )
+            )
           }
         </section>
 

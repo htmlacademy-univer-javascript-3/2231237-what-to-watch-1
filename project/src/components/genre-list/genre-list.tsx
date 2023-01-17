@@ -1,10 +1,12 @@
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {changeGenre} from "../../store/action";
-import {getFilms} from "../../store/films/action";
-import {INITIAL_GENRE_STATE} from "../../const";
+import {
+  useAppDispatch,
+  useAppSelector} from '../../hooks';
+import {changeGenre} from '../../store/action';
+import {getFilms} from '../../store/films/action';
+import {INITIAL_GENRE_STATE} from '../../const';
 
 type Props = {
-  genre: string
+  genre: string;
 };
 
 
@@ -18,7 +20,8 @@ function GenresList(props: Props) {
         catalogGenresData.map((genre) =>
           (
             <li key={genre.length}
-                className={`catalog__genres-item ${props.genre === genre ? 'catalog__genres-item--active' : ''}`}>
+              className={`catalog__genres-item ${props.genre === genre ? 'catalog__genres-item--active' : ''}`}
+            >
               <a onClick={() => {
                 dispatch(changeGenre(genre));
               }} className="catalog__genres-link"

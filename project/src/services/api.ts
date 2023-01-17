@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {getToken} from './token';
-import {StatusCodes} from "http-status-codes";
+import {StatusCodes} from 'http-status-codes';
+import {toast} from 'react-toastify';
 
 const BASE_URL = 'https://10.react.pages.academy/wtw';
 const TIMEOUT = 5000;
@@ -34,9 +35,8 @@ export const createAPI = () : AxiosInstance => {
 
   api.interceptors.response.use(
     (response) => response,
-    (error: AxiosError) => {
+    (error: AxiosError<{error: string}>) => {
       if (error.response && shouldDisplayError(error.response)) {
-        // @ts-ignore
         toast.warn(error.response.data.error);
       }
 
@@ -44,4 +44,4 @@ export const createAPI = () : AxiosInstance => {
     }
   );
   return api;
-}
+};

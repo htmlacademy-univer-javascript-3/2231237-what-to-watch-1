@@ -1,5 +1,7 @@
 import {Navigate} from 'react-router-dom';
-import {AppRoutes, AuthorizationStatus} from '../../const';
+import {
+  AppRoutes,
+  AuthorizationStatus} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {getAuthorizationStatus} from '../../store/user/action';
 

@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import {apiRoutes} from '../../const';
 
 function NotFoundErrorPage() {
   return (
@@ -6,7 +7,7 @@ function NotFoundErrorPage() {
       <h3>
         Page not found (404)
       </h3>
-      <Link to={'/'}>
+      <Link to={apiRoutes.DEFAULT}>
         Return to main page
       </Link>
     </>
