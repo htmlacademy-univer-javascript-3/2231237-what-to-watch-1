@@ -16,37 +16,24 @@ export enum AuthorizationStatus {
 }
 
 export enum TabTypes {
-  OVERVIEW = 'overview',
-  DETAILS = 'details',
-  REVIEW = 'review'
-}
-
-export enum Genres {
-  COMEDY = 'Comedy',
-  CRIME = 'Crime',
-  DOCUMENTARY = 'Documentary',
-  DRAMA = 'Drama',
-  HORROR = 'Horror',
-  KIDS_AND_FAMILY = 'Kids & Family',
-  ROMANCE = 'Romance',
-  SCI_FI = 'Sci-fi',
-  THRILLER = 'Thriller',
-  ALL_GENRES = 'All genres',
+  Overview = 'overview',
+  Details = 'details',
+  Review = 'review'
 }
 
 export enum apiRoutes {
-  DEFAULT = '/',
-  FILMS = '/films',
-  FILM = '/film',
-  LOGIN = '/login',
-  LOGOUT = '/logout',
-  SIMILAR = '/similar',
-  PROMO = '/promo',
-  FAVORITE = '/favorite',
-  COMMENTS = '/comments',
-  NOT_FOUND = '/notFound',
+  Default = '/',
+  Films = '/films',
+  Film = '/film',
+  Login = '/login',
+  Logout = '/logout',
+  Similar = '/similar',
+  Promo = '/promo',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  NotFound = '/notFound',
   // Review = '/review',
-  PLAYER = '/player',
+  Player = '/player',
   // MyList = '/mylist'
 }
 

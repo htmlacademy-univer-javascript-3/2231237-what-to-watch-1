@@ -1,4 +1,4 @@
-import {FormEvent, useState} from 'react';
+import {FormEvent, useState, Fragment} from 'react';
 import {
   useAppDispatch,
   useAppSelector
@@ -32,8 +32,8 @@ function CommentForm() {
       <form action="#" className="add-review__form" onSubmit={handleReviewSubmit}>
         <div className="rating">
           <div className="rating__stars">
-            {[...Array(10)].map((_, index) => (
-              <>
+            {[...Array(10).keys()].map(( index) => (
+              <Fragment key={index}>
                 <input className="rating__input" id={`star-${MAX_STARS_COUNT - index}`} type="radio" disabled={isSend} name="rating" value={MAX_STARS_COUNT - index}
                   checked={rating.ratingStars === (MAX_STARS_COUNT - index)} onChange={() => {
                     setRating(
@@ -41,7 +41,7 @@ function CommentForm() {
                   }}
                 />
                 <label className="rating__label" htmlFor={`star-${MAX_STARS_COUNT - index}`}>Rating {MAX_STARS_COUNT - index}</label>
-              </>
+              </Fragment>
             ))}
           </div>
         </div>

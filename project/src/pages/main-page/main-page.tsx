@@ -75,12 +75,12 @@ function MainPage() {
               <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.releaseYear}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
 
-                <Link to={`${apiRoutes.PLAYER}/${promoFilm.id}`}>
+                <Link to={`${apiRoutes.Player}/${promoFilm.id}`}>
                   <button className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
@@ -102,7 +102,7 @@ function MainPage() {
           <div className="catalog__films-list">
             {genresFilm.slice(0, filmsCount).map((film) => (
               <FilmCard key={film.id} film={film} onClick={() => {
-                navigate(`${apiRoutes.FILMS}/${film.id}`);
+                navigate(`${apiRoutes.Films}/${film.id}`);
               }}
               />))}
           </div>

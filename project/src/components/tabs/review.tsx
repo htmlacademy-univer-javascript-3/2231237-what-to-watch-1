@@ -22,7 +22,7 @@ function MovieReviewColumn(props: Props): JSX.Element {
         </footer>
       </blockquote>
 
-      <div className="review__rating">{props.review.rating}</div>
+      <div className="review__rating">{props.review.rating.toFixed(1)}</div>
     </div>
   );
 }

@@ -19,9 +19,7 @@ function GenresList(props: Props) {
       {
         catalogGenresData.map((genre) =>
           (
-            <li key={genre.length}
-              className={`catalog__genres-item ${props.genre === genre ? 'catalog__genres-item--active' : ''}`}
-            >
+            <li key={genre} className={`catalog__genres-item ${props.genre === genre ? 'catalog__genres-item--active' : ''}`}>
               <a onClick={() => {
                 dispatch(changeGenre(genre));
               }} className="catalog__genres-link"

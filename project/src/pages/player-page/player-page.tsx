@@ -12,7 +12,7 @@ function PlayerPage() {
   const params = useParams();
   const dispatch = useAppDispatch();
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -65,6 +65,9 @@ function PlayerPage() {
     return `-${format}`;
   };
 
+  if (isLoading) {
+    return <Loader/>;
+  }
 
   return (
     <div className="player">
@@ -74,11 +77,15 @@ function PlayerPage() {
         ref={videoRef}
         onDoubleClick={handleFullScreenVideo}
         onTimeUpdate={(event) => handleProgressBar(event)}
+        autoPlay
       />
 
       {isLoading && <Loader/>}
-      <button type="button" className="player__exit" onClick={() =>
-        navigate(`${apiRoutes.FILMS}/${film?.id}`)}
+      <button type="button" className="player__exit" onClick={() => {
+        if (film) {
+          navigate(`${apiRoutes.Films}/${film.id}`);
+        }
+      }}
       >Exit
       </button>
 

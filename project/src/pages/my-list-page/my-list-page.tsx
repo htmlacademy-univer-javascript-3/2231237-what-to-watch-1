@@ -25,7 +25,7 @@ function MyListPage() {
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <Link to={apiRoutes.DEFAULT} className="logo__link">
+          <Link to={apiRoutes.Default} className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
@@ -44,7 +44,7 @@ function MyListPage() {
         <div className="catalog__films-list">
           {favoriteFilms.map((film) => (
             <FilmCard key={film.id} film={film} onClick={() => {
-              navigate(`${apiRoutes.FILMS}/${film.id}`);
+              navigate(`${apiRoutes.Films}/${film.id}`);
             }}
             />
           ))}

@@ -18,7 +18,7 @@ function FilmCard(props: FilmCardProps) {
     <article className="small-film-card catalog__films-card" onClick={onClick}>
       <VideoPlayer previewVideoLink={film.previewVideoLink} poster={film.posterImage}/>
       <h3 className="small-film-card__title">
-        <Link to={`${apiRoutes.FILMS}/${film.id}`} className="small-film-card__link">{film.name}</Link>
+        <Link to={`${apiRoutes.Films}/${film.id}`} className="small-film-card__link">{film.name}</Link>
       </h3>
     </article>
   );
