@@ -2,7 +2,7 @@ export type Film = {
   id: number,
   name: string,
   description: string,
-  releaseYear: number,
+  released: number,
   genre: string,
   rating: number,
   scoresCount: number,

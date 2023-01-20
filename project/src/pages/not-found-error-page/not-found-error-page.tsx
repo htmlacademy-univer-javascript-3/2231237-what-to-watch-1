@@ -7,7 +7,7 @@ function NotFoundErrorPage() {
       <h3>
         Page not found (404)
       </h3>
-      <Link to={apiRoutes.DEFAULT}>
+      <Link to={apiRoutes.Default}>
         Return to main page
       </Link>
     </>

@@ -61,11 +61,11 @@ function MoviePage() {
               <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.releaseYear}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
 
               <div className="film-card__buttons">
-                <Link to={`${apiRoutes.PLAYER}/${film.id}`} className="btn btn--play film-card__button" type="button">
+                <Link to={`${apiRoutes.Player}/${film.id}`} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -73,7 +73,7 @@ function MoviePage() {
                 </Link>
                 <MovieInList film={film}/>
                 {authorizationStatus === AuthorizationStatus.Auth &&
-                  <Link to={`${apiRoutes.FILMS}/${film.id}/review`} className="btn film-card__button">Add review</Link>}
+                  <Link to={`${apiRoutes.Films}/${film.id}/review`} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -97,11 +97,7 @@ function MoviePage() {
           <h2 className="catalog__title">More like this</h2>
           {
             similarFilms.slice(0, SIMILAR_FILMS_COUNT).map((similarFilm) =>
-              (<FilmCard key={similarFilm.id} film={similarFilm} onClick={() => {
-                navigate(`${apiRoutes.FILMS}/${similarFilm.id}`);
-              }}
-              />
-              )
+              (<FilmCard key={similarFilm.id} film={similarFilm} onClick={() => {navigate(`${apiRoutes.Films}/${similarFilm.id}`);}}/>)
             )
           }
         </section>

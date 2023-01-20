@@ -12,7 +12,7 @@ import HeaderUserInfo from '../../components/header-user-info/header-user-info';
 import {getFilm} from '../../store/film/action';
 import {useEffect} from 'react';
 import {fetchFilmAction} from '../../store/api-actions';
-import {apiRoutes} from '../../const';
+import {apiRoutes, AppRoutes} from '../../const';
 
 
 function AddReviewPage() {
@@ -38,17 +38,17 @@ function AddReviewPage() {
 
           <header className="page-header">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={AppRoutes.Main} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`${apiRoutes.FILMS}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
+                  <Link to={`${apiRoutes.Films}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>

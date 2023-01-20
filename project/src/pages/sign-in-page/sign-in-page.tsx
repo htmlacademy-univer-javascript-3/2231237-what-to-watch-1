@@ -15,7 +15,7 @@ function SignInPage() {
 
   const [errorMessage, setError] = useState<string | null>(null);
   if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={apiRoutes.DEFAULT}/>;
+    return <Navigate to={apiRoutes.Default}/>;
   }
 
   const signInValidator = (data: {email: string; password: string}) => {

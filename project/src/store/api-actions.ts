@@ -16,7 +16,7 @@ export const fetchAllFilmsAction = createAsyncThunk<Film[], undefined, {
 }>(
   'data/fetchFilms',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<Film[]>(apiRoutes.FILMS);
+    const {data} = await api.get<Film[]>(apiRoutes.Films);
     return data;
   },
 );
@@ -29,10 +29,10 @@ export const fetchFilmAction = createAsyncThunk<Film | undefined, string | undef
   'data/fetchFilm',
   async (filmId, {dispatch, extra: api}) => {
     try {
-      const {data} = await api.get<Film>(`${apiRoutes.FILMS}/${filmId}`);
+      const {data} = await api.get<Film>(`${apiRoutes.Films}/${filmId}`);
       return data;
     } catch {
-      dispatch(redirectToRoute(apiRoutes.NOT_FOUND));
+      dispatch(redirectToRoute(apiRoutes.NotFound));
     }
   },
 );
@@ -44,7 +44,7 @@ export const fetchPromoFilmAction = createAsyncThunk<Film, undefined, {
 }>(
   'data/fetchPromoFilm',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<Film>(apiRoutes.PROMO);
+    const {data} = await api.get<Film>(apiRoutes.Promo);
     return data;
   },
 );
@@ -56,7 +56,7 @@ export const fetchFavoriteFilmsAction = createAsyncThunk<Film[], undefined, {
 }>(
   'data/fetchFavoriteFilms',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<Film[]>(apiRoutes.FAVORITE);
+    const {data} = await api.get<Film[]>(apiRoutes.Favorite);
     return data;
   },
 );
@@ -68,7 +68,7 @@ export const fetchChangeFavoriteFilmsAction = createAsyncThunk<Film, {filmId: nu
 }>(
   'data/fetchChangeFavoriteFilms',
   async ({filmId, status}, {extra: api}) => {
-    const {data} = await api.post<Film>(`${apiRoutes.FAVORITE}/${filmId}/${status}`);
+    const {data} = await api.post<Film>(`${apiRoutes.Favorite}/${filmId}/${status}`);
     return data;
   },
 );
@@ -80,7 +80,7 @@ export const fetchReviewAction = createAsyncThunk<Review[], number | undefined, 
 }>(
   'data/fetchReview',
   async (filmId, {extra: api}) => {
-    const {data} = await api.get<Review[]>(`${apiRoutes.COMMENTS}/${filmId}`);
+    const {data} = await api.get<Review[]>(`${apiRoutes.Comments}/${filmId}`);
     return data;
   },
 );
@@ -92,8 +92,8 @@ export const fetchAddReviewAction = createAsyncThunk<Review[] | Error, {filmId: 
 }>(
   'data/fetchAddReview',
   async ({filmId, comment, rating}, {dispatch, extra: api}) => {
-    const {data} = await api.post<Review[] | Error>(`${apiRoutes.COMMENTS}/${filmId}`, {comment, rating});
-    dispatch(redirectToRoute(`${apiRoutes.FILMS}/${filmId}`));
+    const {data} = await api.post<Review[] | Error>(`${apiRoutes.Comments}/${filmId}`, {comment, rating});
+    dispatch(redirectToRoute(`${apiRoutes.Films}/${filmId}`));
     return data;
   },
 );
@@ -105,7 +105,7 @@ export const fetchGetSimilarAction = createAsyncThunk<Film[], string | undefined
 }>(
   'data/fetchGetSimilar',
   async (filmId, {dispatch, extra: api}) => {
-    const {data} = await api.get<Film[]>(`${apiRoutes.FILMS}/${filmId}${apiRoutes.SIMILAR}`);
+    const {data} = await api.get<Film[]>(`${apiRoutes.Films}/${filmId}${apiRoutes.Similar}`);
     return data;
   },
 );
@@ -117,7 +117,7 @@ export const checkAuthAction = createAsyncThunk<User, undefined, {
 }>(
   'user/checkAuth',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<User>(apiRoutes.LOGIN);
+    const {data} = await api.get<User>(apiRoutes.Login);
     return data;
   },
 );
@@ -129,9 +129,9 @@ export const loginAction = createAsyncThunk<User, AuthData, {
 }>(
   'user/login',
   async ({email, password}, {dispatch, extra: api}) => {
-    const {data: user} = await api.post<User>(apiRoutes.LOGIN, {email, password});
+    const {data: user} = await api.post<User>(apiRoutes.Login, {email, password});
     saveToken(user.token);
-    dispatch(redirectToRoute(apiRoutes.DEFAULT));
+    dispatch(redirectToRoute(apiRoutes.Default));
     return user;
   },
 );
@@ -143,7 +143,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }>(
   'user/logout',
   async (_arg, {extra: api}) => {
-    await api.delete(apiRoutes.LOGOUT);
+    await api.delete(apiRoutes.Logout);
     dropToken();
   },
 );

@@ -26,11 +26,11 @@ function ReviewsTab() {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {reviews.slice(0, reviews.length / 2).map((review) =>
+        {reviews.slice(0, reviews.length / 2).map((review, index) =>
           <MovieReviewColumn review={review} key={review.id}/>)}
       </div>
       <div className="film-card__reviews-col">
-        {reviews.slice(reviews.length / 2 + 1, reviews.length).map((review) =>
+        {reviews.slice(reviews.length / 2 + 1, reviews.length).map((review, index) =>
           <MovieReviewColumn review={review} key={review.id}/>)}
       </div>
     </div>
